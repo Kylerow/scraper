@@ -13,3 +13,9 @@ $ sbt
 ```
 
 (Be sure to include protocol in url, e.g. http)
+
+To test:
+
+```
+sbt clean compile test
+```
