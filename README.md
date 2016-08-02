@@ -11,3 +11,5 @@ $ sbt
 > run http://software4profit.wordpress.com
 
 ```
+
+(Be sure to include protocol in url, e.g. http)
