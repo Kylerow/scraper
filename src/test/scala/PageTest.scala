@@ -13,12 +13,12 @@ class PageTest
       }
     }
     page.printLink(Link("link"),5)
-    System.out.println("stringbuffer="+stringBuffer)
-    assert(stringBuffer.toString.equals(">>>>> link"))
+
+    assert(stringBuffer.toString.equals(">>>>> link\n"))
   }
   "pullpage" should "return a list of links on the page" in {
     val page = new Page with Dependencies
-    val results = page.pullPage(Link("test.html"))
+    val results = page.pullPage(Link("file://test.html"))
 
     assert(results(0).link.equals("test2.html"))
   }

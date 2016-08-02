@@ -7,7 +7,7 @@ class ScraperAcceptanceTest extends FlatSpec with Matchers {
     Dependencies.out = new Output {
       override def print(x :String) = stringBuffer.append(x);
     }
-    Scraper.main(Array("0","file://test.html"))
+    Scraper.main(Array("file://test.html"))
     assert(stringBuffer.toString.equals("> file://test.html\n>> test2.html\n"))
   }
   "scraper" should "follow a bunch of links from google" in{
@@ -16,7 +16,7 @@ class ScraperAcceptanceTest extends FlatSpec with Matchers {
     Dependencies.out = new Output {
       override def print(x :String) = stringBuffer.append(x);
     }
-    Scraper.main(Array("0","http://www.google.com/"))
-    assert(stringBuffer.toString.equals("> test.html\n>> test2.html\n"))
+    Scraper.main(Array("http://www.kylerowlandmusic.com/"))
+    assert(stringBuffer.toString.contains(">>>> http://www.kylerowlandmusic.com/music/emergence.mp3\n"))
   }
 }

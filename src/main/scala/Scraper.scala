@@ -8,7 +8,7 @@ class Output {
 
 object Scraper {
   def main(args: Array[String]) = {
-    (new Scraper with Dependencies).startVisit(args(1))
+    (new Scraper with Dependencies).startVisit(args(0))
   }
   val visited = new mutable.ArrayBuffer[String]
 }
@@ -30,9 +30,13 @@ class Scraper {
 
       val link = Link(pageReference)
       val newCount = count + 1
+      try {
+        page.printLink(link, newCount)
+        page.visitChildren(page.pullPage(link), newCount, domain)
+      } catch {
+        case t :Throwable => //out.print("There was an error.\n")
+      }
 
-      page.printLink(link, newCount)
-      page.visitChildren(page.pullPage(link), newCount, domain)
     }
   }
 }

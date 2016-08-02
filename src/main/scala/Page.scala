@@ -22,11 +22,19 @@ class Page {
             .getSystemResource(link.link.substring(7))
             .getFile))
     else return List()
-    userAgent
+    val href =
+      userAgent
       .doc
       .findEvery("<a>").toList.toList
       .filter(_.hasAttribute("href"))
       .map(x=>Link(x.getAt("href")))
+    val img =
+      userAgent
+        .doc
+        .findEvery("<img>").toList.toList
+        .filter(_.hasAttribute("src"))
+        .map(x=>Link(x.getAt("src")))
+    img ::: href
   }
 
   def visitChildren(links :List[Link],count :Int, domain :String) :Unit = {
