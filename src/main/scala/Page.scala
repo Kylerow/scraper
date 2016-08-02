@@ -18,8 +18,8 @@ class Page {
     else if (link.link.substring(0,4).equals("file"))
       userAgent.open(
         new java.io.File(
-          ClassLoader
-            .getSystemResource(link.link.substring(7))
+          getClass().getClassLoader()
+            .getResource(link.link.substring(7))
             .getFile))
     else return List()
     val href =
